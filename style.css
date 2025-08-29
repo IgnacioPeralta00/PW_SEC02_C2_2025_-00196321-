@@ -16,14 +16,14 @@ body {
     background: #f4f4f4;
 }
 
-/* contenedor central con ancho controlado */
+/* Contenedor central con ancho controlado */
 .container {
     width: calc(100% - 40px);
     max-width: 1100px;
     margin: 0 auto;
 }
 
-/* header  */
+/* HEADER (verde) */
 .site-header {
     background-color: #3fb04f;
     color: white;
@@ -46,12 +46,50 @@ body {
     margin-bottom: 6px;
 }
 
+/* Subtítulo más pequeño */
 .site-subtitle {
     font-size: 15px;
     opacity: 0.95;
 }
 
-/* MAIN: tarjetas (3 columnas) */
+/* CONTROLE */
+.controls {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Botones */
+.btn {
+    background: white;
+    color: #222;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: transform .08s ease, box-shadow .08s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.btn.small {
+    padding: 6px 8px;
+    font-size: 13px;
+}
+
+.btn.secondary {
+    background: transparent;
+    border-style: dashed;
+}
+
+/* MAIN: tarjetas */
 .main-content {
     background: white;
     margin-top: 12px;
@@ -68,12 +106,17 @@ body {
     gap: 20px;
 }
 
+/* Modo apilado (filas) - se activa añadiendo la clase .stacked en JS */
+.cards.stacked {
+    grid-template-columns: 1fr;
+}
+
 /* Cada tarjeta */
 .card {
     padding: 6px 12px;
 }
 
-/* Título de cada tarjeta (London / Paris / Tokyo) */
+/* Título de cada tarjeta */
 .card-title {
     font-size: 28px;
     margin-bottom: 12px;
@@ -88,7 +131,13 @@ body {
     color: #333;
 }
 
-/*  FOOTER (azul) */
+.cards.alt-color .card-title,
+.cards.alt-color .card-text {
+    color: #8236a3;
+    transition: color .2s ease;
+}
+
+/* FOOTER (azul) */
 .site-footer {
     background-color: #1e90ff;
     color: white;
@@ -100,7 +149,13 @@ body {
 .footer-inner {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
+}
+
+.footer-top {
+    display: flex;
+    gap: 16px;
+    align-items: center;
 }
 
 .footer-title {
@@ -114,7 +169,41 @@ body {
     opacity: 0.95;
 }
 
-/* Responsive adjustments */
+
+.footer-image-area {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px;
+}
+
+/* estilo de la imagen insertada */
+.footer-image-area img {
+    max-width: 150px;
+    max-height: 110px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* formulario de imagen */
+.image-form {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* hidden class */
+.hidden {
+    display: none;
+}
+
+/* layout responsive */
 @media (max-width: 900px) {
     .site-title {
         font-size: 32px;

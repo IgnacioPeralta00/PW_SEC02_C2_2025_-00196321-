@@ -6,33 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>University Demo - Ejemplo</title>
 
-    <!-- enlace a hoja de estilos -->
+    <!-- Enlace al .css -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <!-- HEADER-->
+    <!-- HEADER -->
     <header class="site-header">
         <div class="container header-inner">
-            <h1 class="site-title">University Demo</h1>
+            <h1 class="site-title" id="site-title">University Demo</h1>
             <p class="site-subtitle" id="subtitle">Resize this responsive page!</p>
         </div>
     </header>
 
-    <!-- main, sección con tres columnas (London, Paris, Tokyo) -->
+    <!-- Contenedor para los botones -->
+    <div class="container controls">
+        <button id="btn-toggle-layout" class="btn">Alternar columnas/filas</button>
+        <button id="btn-change-title" class="btn">Cambiar título header</button>
+        <button id="btn-toggle-colors" class="btn">Cambiar color secciones</button>
+        <button id="btn-add-image" class="btn">Agregar imagen al footer</button>
+    </div>
+
+    <!-- MAIN -->
     <main class="container main-content" role="main">
-        <!-- Row con las 3 tarjetas -->
-        <section class="cards">
-            <!-- Card 1 -->
+        <section class="cards" id="cards">
+            <!-- Tarjeta 1 -->
             <article class="card">
                 <h2 class="card-title">London</h2>
                 <p class="card-text">London is the capital city of England.</p>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vulputate aliquam
-                    augue, eu vehicula diam mollis a.
-                </p>
+                    augue, eu vehicula diam mollis a.</p>
             </article>
 
-            <!-- Card 2 -->
+            <!-- Tarjeta 2 -->
             <article class="card">
                 <h2 class="card-title">Paris</h2>
                 <p class="card-text">Paris is the capital of France.</p>
@@ -40,12 +46,13 @@
                     odio.</p>
             </article>
 
-            <!-- Card 3 -->
+            <!-- Tarjeta 3 -->
             <article class="card">
                 <h2 class="card-title">Tokyo</h2>
                 <p class="card-text">Tokyo is the capital of Japan.</p>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus volutpat
-                    ligula, eu imperdiet nisl tincidunt id. Vivamus augue nibh..</p>
+                    ligula, eu imperdiet nisl tincidunt id. Vivamus augue nibh.
+                </p>
             </article>
         </section>
     </main>
@@ -53,12 +60,31 @@
     <!-- FOOTER -->
     <footer class="site-footer">
         <div class="container footer-inner">
-            <h3 class="footer-title">Footer Demo</h3>
-            <p class="footer-text">footer example demo!</p>
+            <div class="footer-top">
+                <h3 class="footer-title">Footer Demo</h3>
+                <p class="footer-text">footer example demo!</p>
+            </div>
+
+            <!-- Espacio para insertar la imagen -->
+            <div id="footer-image-area" class="footer-image-area" aria-live="polite"></div>
+
+            <!-- fomrulario oculto para agregar imagen ya se con url o desde el disco -->
+            <div id="image-form" class="image-form hidden">
+                <label for="image-url">Pegar URL de imagen:</label>
+                <input type="url" id="image-url" placeholder="https://ejemplo.com/miimagen.jpg" />
+
+                <label for="image-file">o subir archivo local:</label>
+                <input type="file" id="image-file" accept="image/*" />
+
+                <div class="form-actions">
+                    <button id="image-insert" class="btn small">Insertar imagen</button>
+                    <button id="image-cancel" class="btn small secondary">Cancelar</button>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- enlace a script -->
+    <!-- Enlace a script -->
     <script src="script.js"></script>
 </body>
 
