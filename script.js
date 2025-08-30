@@ -15,29 +15,27 @@ const imageInsertBtn = document.getElementById('image-insert');
 const imageCancelBtn = document.getElementById('image-cancel');
 const footerImageArea = document.getElementById('footer-image-area');
 
-// actualizar el subtítulo con el ancho de la ventana (Es una 'función' extra)
-function updateSubtitleWithWidth() {
-    const w = window.innerWidth;
-    subtitleEl.textContent = `Resize this responsive page! — width: ${w}px`;
-}
-updateSubtitleWithWidth();
-window.addEventListener('resize', updateSubtitleWithWidth);
-
 // cambiar la fila de tarjetas a columna y viceversa
 btnToggleLayout.addEventListener('click', () => {
     cardsEl.classList.toggle('stacked');
 
     // Esto cambia el texto del botón segun el estado actual
     const isStacked = cardsEl.classList.contains('stacked');
-    btnToggleLayout.textContent = isStacked ? 'Mostrar en columnas' : 'Alternar columnas/filas';
+    btnToggleLayout.textContent = isStacked ? 'Mostrar en fila' : 'Alternar columnas/filas';
 });
 
-// cambiar el título del header
+// cambiar el título del header, alterna entre los dos titulos, mejora la UX ;D
+const originalTitle = siteTitleEl.textContent;
 btnChangeTitle.addEventListener('click', () => {
-    siteTitleEl.textContent = 'HTML & CSS: Curso práctico avanzado';
-    btnChangeTitle.textContent = 'Título cambiado';
-    // Volver a texto original después de 2.5s para mejorar la UX ;)
-    setTimeout(() => btnChangeTitle.textContent = 'Cambiar título header', 2500);
+
+    if (siteTitleEl.textContent === originalTitle) {
+        siteTitleEl.textContent = 'HTML & CSS: Curso práctico avanzado';
+        btnChangeTitle.textContent = 'Restablecer título'
+    }
+    else {
+        siteTitleEl.textContent = originalTitle;
+        btnChangeTitle.textContent = 'Cambiar título'
+    }
 });
 
 // Cambiar colores de las secciones (cards o tarjetas)
@@ -47,7 +45,7 @@ btnToggleColors.addEventListener('click', () => {
     btnToggleColors.textContent = active ? 'Restablecer color secciones' : 'Cambiar color secciones';
 });
 
-// Agregar la imagen deseada al footer
+// Agregar la imagen al footer
 btnAddImage.addEventListener('click', () => {
     // muestra y oculta el formulario de imagen
     imageForm.classList.toggle('hidden');
@@ -66,7 +64,7 @@ imageCancelBtn.addEventListener('click', (e) => {
     imageForm.classList.add('hidden');
 });
 
-// Insertar imagemos la imagen, si hay archivo local, caso contrario se usa la URL
+// Insertar la imagen, si hay archivo local, caso contrario se usa la URL
 imageInsertBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -75,7 +73,7 @@ imageInsertBtn.addEventListener('click', (e) => {
     const url = imageUrlInput.value && imageUrlInput.value.trim();
 
     if (file) {
-        // Leer con FileReader y convertir a data URL
+        // Leer con FileReader y convertir a URL
         const reader = new FileReader();
         reader.onload = function (ev) {
             const src = ev.target.result;
@@ -93,24 +91,18 @@ imageInsertBtn.addEventListener('click', (e) => {
     }
 
     if (url) {
-        // Validar que parezca una URL de imagen (extensiones comunes)
-        if (!isProbablyImageUrl(url)) {
-            if (!confirm('La URL no parece una imagen directa. ¿Deseas intentar insertarla de todos modos?')) {
-                return;
-            }
-        }
         insertImageToFooter(url);
         imageUrlInput.value = '';
         imageForm.classList.add('hidden');
         return;
     }
-
+    // Alerta si se presiona insertar sin URL ni archivo
     alert('Por favor, pega una URL válida o selecciona un archivo local antes de insertar.');
 });
 
-// Helper: insertar la imagen en el área del footer con estilo
+// Helper: insertar la imagen en el area del footer con estilo, ademas de un botonsito para eliminarla 
 function insertImageToFooter(src) {
-    // Crear un contenedor de imagen
+    // Contenedor de imagen
     const figure = document.createElement('figure');
     figure.className = 'footer-figure';
 
@@ -119,7 +111,7 @@ function insertImageToFooter(src) {
     img.alt = 'Imagen agregada al footer';
     img.loading = 'lazy';
 
-    // extra: caption con botón para eliminar
+    // 'caption' con botón para eliminar
     const figcap = document.createElement('figcaption');
     figcap.style.display = 'flex';
     figcap.style.gap = '8px';
