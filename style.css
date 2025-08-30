@@ -53,7 +53,7 @@ body {
     opacity: 0.95;
 }
 
-/* CONTROLE */
+/* controles */
 .controls {
     margin-top: 12px;
     margin-bottom: 8px;
@@ -107,12 +107,12 @@ body {
     gap: 20px;
 }
 
-/* Modo apilado (filas) - se activa añadiendo la clase .stacked en JS */
+/* Modo apilado */
 .cards.stacked {
     grid-template-columns: 1fr;
 }
 
-/* Cada tarjeta */
+/* padding a cada tarjeta */
 .card {
     padding: 6px 12px;
 }
@@ -138,7 +138,7 @@ body {
     transition: color .2s ease;
 }
 
-/* FOOTER (azul) */
+/* FOOTER */
 .site-footer {
     background-color: #1e90ff;
     color: white;
@@ -155,13 +155,14 @@ body {
 
 .footer-top {
     display: flex;
-    gap: 16px;
-    align-items: center;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
 }
 
 .footer-title {
     font-size: 30px;
-    margin-bottom: 6px;
+    margin-bottom: 0;
     font-weight: 500;
 }
 

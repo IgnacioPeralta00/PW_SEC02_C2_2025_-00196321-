@@ -45,7 +45,7 @@ btnToggleColors.addEventListener('click', () => {
     btnToggleColors.textContent = active ? 'Restablecer color secciones' : 'Cambiar color secciones';
 });
 
-// Agregar la imagen deseada al footer
+// Agregar la imagen al footer
 btnAddImage.addEventListener('click', () => {
     // muestra y oculta el formulario de imagen
     imageForm.classList.toggle('hidden');
@@ -73,7 +73,7 @@ imageInsertBtn.addEventListener('click', (e) => {
     const url = imageUrlInput.value && imageUrlInput.value.trim();
 
     if (file) {
-        // Leer con FileReader y convertir a data URL
+        // Leer con FileReader y convertir a URL
         const reader = new FileReader();
         reader.onload = function (ev) {
             const src = ev.target.result;
@@ -91,18 +91,12 @@ imageInsertBtn.addEventListener('click', (e) => {
     }
 
     if (url) {
-        // Valida que parezca una URL de imagen (extensiones comunes)
-        if (!isProbablyImageUrl(url)) {
-            if (!confirm('La URL no parece una imagen directa. ¿Deseas intentar insertarla de todos modos?')) {
-                return;
-            }
-        }
         insertImageToFooter(url);
         imageUrlInput.value = '';
         imageForm.classList.add('hidden');
         return;
     }
-
+    // Alerta si se presiona insertar sin URL ni archivo
     alert('Por favor, pega una URL válida o selecciona un archivo local antes de insertar.');
 });
 
