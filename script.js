@@ -15,7 +15,7 @@ const imageInsertBtn = document.getElementById('image-insert');
 const imageCancelBtn = document.getElementById('image-cancel');
 const footerImageArea = document.getElementById('footer-image-area');
 
-// actualizar el subtítulo con el ancho de la ventana (Es una 'función' extra)
+// actualizar el subtitulo con el ancho de la ventana (es una 'función' extra)
 function updateSubtitleWithWidth() {
     const w = window.innerWidth;
     subtitleEl.textContent = `Resize this responsive page! — width: ${w}px`;
@@ -29,15 +29,21 @@ btnToggleLayout.addEventListener('click', () => {
 
     // Esto cambia el texto del botón segun el estado actual
     const isStacked = cardsEl.classList.contains('stacked');
-    btnToggleLayout.textContent = isStacked ? 'Mostrar en columnas' : 'Alternar columnas/filas';
+    btnToggleLayout.textContent = isStacked ? 'Mostrar en fila' : 'Alternar columnas/filas';
 });
 
-// cambiar el título del header
+// cambiar el título del header, alterna entre los dos titulos, mejora la UX ;D
+const originalTitle = siteTitleEl.textContent;
 btnChangeTitle.addEventListener('click', () => {
-    siteTitleEl.textContent = 'HTML & CSS: Curso práctico avanzado';
-    btnChangeTitle.textContent = 'Título cambiado';
-    // Volver a texto original después de 2.5s para mejorar la UX ;)
-    setTimeout(() => btnChangeTitle.textContent = 'Cambiar título header', 2500);
+
+    if (siteTitleEl.textContent === originalTitle) {
+        siteTitleEl.textContent = 'HTML & CSS: Curso práctico avanzado';
+        btnChangeTitle.textContent = 'Restablecer título'
+    }
+    else {
+        siteTitleEl.textContent = originalTitle;
+        btnChangeTitle.textContent = 'Cambiar título'
+    }
 });
 
 // Cambiar colores de las secciones (cards o tarjetas)
@@ -66,7 +72,7 @@ imageCancelBtn.addEventListener('click', (e) => {
     imageForm.classList.add('hidden');
 });
 
-// Insertar imagemos la imagen, si hay archivo local, caso contrario se usa la URL
+// Insertar la imagen, si hay archivo local, caso contrario se usa la URL
 imageInsertBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
