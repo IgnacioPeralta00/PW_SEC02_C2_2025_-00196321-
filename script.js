@@ -15,14 +15,6 @@ const imageInsertBtn = document.getElementById('image-insert');
 const imageCancelBtn = document.getElementById('image-cancel');
 const footerImageArea = document.getElementById('footer-image-area');
 
-// actualizar el subtitulo con el ancho de la ventana (es una 'función' extra)
-function updateSubtitleWithWidth() {
-    const w = window.innerWidth;
-    subtitleEl.textContent = `Resize this responsive page! — width: ${w}px`;
-}
-updateSubtitleWithWidth();
-window.addEventListener('resize', updateSubtitleWithWidth);
-
 // cambiar la fila de tarjetas a columna y viceversa
 btnToggleLayout.addEventListener('click', () => {
     cardsEl.classList.toggle('stacked');
@@ -99,7 +91,7 @@ imageInsertBtn.addEventListener('click', (e) => {
     }
 
     if (url) {
-        // Validar que parezca una URL de imagen (extensiones comunes)
+        // Valida que parezca una URL de imagen (extensiones comunes)
         if (!isProbablyImageUrl(url)) {
             if (!confirm('La URL no parece una imagen directa. ¿Deseas intentar insertarla de todos modos?')) {
                 return;
@@ -114,9 +106,9 @@ imageInsertBtn.addEventListener('click', (e) => {
     alert('Por favor, pega una URL válida o selecciona un archivo local antes de insertar.');
 });
 
-// Helper: insertar la imagen en el área del footer con estilo
+// Helper: insertar la imagen en el area del footer con estilo, ademas de un botonsito para eliminarla 
 function insertImageToFooter(src) {
-    // Crear un contenedor de imagen
+    // Contenedor de imagen
     const figure = document.createElement('figure');
     figure.className = 'footer-figure';
 
@@ -125,7 +117,7 @@ function insertImageToFooter(src) {
     img.alt = 'Imagen agregada al footer';
     img.loading = 'lazy';
 
-    // extra: caption con botón para eliminar
+    // 'caption' con botón para eliminar
     const figcap = document.createElement('figcaption');
     figcap.style.display = 'flex';
     figcap.style.gap = '8px';
